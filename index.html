@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flicko.online — Explore. Learn. Grow.</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --navy: #1B2A4A;
+  --navy-deep: #0d1a2e;
+  --navy-mid: #162240;
+  --cyan: #4DD9E8;
+  --cyan-glow: rgba(77, 217, 232, 0.4);
+  --cyan-soft: rgba(77, 217, 232, 0.15);
+  --white: #f0f4f8;
+  --gold: #f0c674;
+  --rose: #e8708a;
+  --lavender: #b4a7d6;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--navy-deep);
+  color: var(--white);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* ── NAV ── */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background: rgba(13, 26, 46, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(77, 217, 232, 0.1);
+}
+.nav-logo {
+  font-family: 'Space Mono', monospace;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--white);
+  text-decoration: none;
+}
+.nav-logo span { color: var(--cyan); }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  color: rgba(240, 244, 248, 0.7);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--cyan); }
+.nav-hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 5px;
+}
+.nav-hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--white);
+  transition: 0.3s;
+}
+
+/* ── HERO ── */
+.hero {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+#starfield {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  animation: fadeInUp 1.5s ease-out;
+}
+.hero-tagline {
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  font-weight: 300;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 1rem;
+  opacity: 0.9;
+}
+.hero-title {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, var(--white) 0%, var(--cyan) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-subtitle {
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  font-weight: 300;
+  color: rgba(240, 244, 248, 0.7);
+  max-width: 600px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.6;
+}
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.9rem 2rem;
+  background: transparent;
+  border: 1px solid var(--cyan);
+  color: var(--cyan);
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.4s;
+  position: relative;
+  overflow: hidden;
+}
+.hero-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--cyan);
+  transform: translateY(100%);
+  transition: transform 0.4s;
+  z-index: -1;
+}
+.hero-cta:hover::before { transform: translateY(0); }
+.hero-cta:hover { color: var(--navy-deep); }
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  animation: bounce 2s infinite;
+}
+.scroll-indicator svg { width: 24px; height: 24px; stroke: var(--cyan); opacity: 0.5; }
+
+/* ── SECTION HEADERS ── */
+.section-header {
+  text-align: center;
+  padding: 6rem 2rem 3rem;
+  position: relative;
+}
+.section-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 0.75rem;
+}
+.section-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+.section-desc {
+  font-size: 1.05rem;
+  font-weight: 300;
+  color: rgba(240, 244, 248, 0.6);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* ── COSMOS GRID ── */
+.cosmos-section {
+  position: relative;
+  padding: 0 2rem 4rem;
+}
+.cluster-group {
+  margin-bottom: 5rem;
+}
+.cluster-title {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  opacity: 0.7;
+  margin-bottom: 2rem;
+  padding-left: 1rem;
+  border-left: 2px solid var(--cyan);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.cluster-icon {
+  width: 20px;
+  height: 20px;
+  opacity: 0.8;
+}
+
+.stars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ── STAR CARD ── */
+.star-card {
+  position: relative;
+  background: linear-gradient(145deg, rgba(22, 34, 64, 0.8), rgba(13, 26, 46, 0.9));
+  border: 1px solid rgba(77, 217, 232, 0.08);
+  border-radius: 12px;
+  padding: 2rem;
+  cursor: pointer;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  overflow: hidden;
+}
+.star-card::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  bottom: -1px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--cyan), transparent 50%);
+  opacity: 0;
+  transition: opacity 0.5s;
+  z-index: -1;
+}
+.star-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(77, 217, 232, 0.3);
+  box-shadow: 0 20px 60px rgba(77, 217, 232, 0.08);
+}
+.star-card:hover::before { opacity: 0.15; }
+.star-card:hover .star-dot { transform: scale(1.4); box-shadow: 0 0 20px var(--cyan-glow); }
+
+.star-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+.star-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 10px var(--cyan-glow);
+  flex-shrink: 0;
+  margin-top: 6px;
+  transition: all 0.5s;
+  animation: twinkle 3s ease-in-out infinite;
+}
+.star-dot.gold { background: var(--gold); box-shadow: 0 0 10px rgba(240, 198, 116, 0.4); }
+.star-dot.rose { background: var(--rose); box-shadow: 0 0 10px rgba(232, 112, 138, 0.4); }
+.star-dot.lavender { background: var(--lavender); box-shadow: 0 0 10px rgba(180, 167, 214, 0.4); }
+
+.star-number {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  color: rgba(240, 244, 248, 0.25);
+  margin-bottom: 0.25rem;
+}
+.star-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: 0.25rem;
+}
+.star-author {
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: rgba(240, 244, 248, 0.5);
+}
+.star-gift {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.85rem;
+  background: var(--cyan-soft);
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--cyan);
+  margin-bottom: 1rem;
+}
+.star-gift svg { width: 14px; height: 14px; }
+.star-preview {
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: rgba(240, 244, 248, 0.5);
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.star-video-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 1.25rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: rgba(240, 244, 248, 0.35);
+  letter-spacing: 0.05em;
+}
+.star-video-badge svg { width: 16px; height: 16px; opacity: 0.5; }
+
+/* ── MODAL ── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(13, 26, 46, 0.92);
+  backdrop-filter: blur(20px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.modal-overlay.active {
+  display: flex;
+  opacity: 1;
+}
+.modal {
+  background: linear-gradient(160deg, var(--navy-mid), var(--navy-deep));
+  border: 1px solid rgba(77, 217, 232, 0.15);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 680px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 2.5rem;
+  position: relative;
+  animation: modalIn 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.modal-close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  background: rgba(240, 244, 248, 0.05);
+  border: 1px solid rgba(240, 244, 248, 0.1);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  color: var(--white);
+}
+.modal-close:hover {
+  background: rgba(77, 217, 232, 0.15);
+  border-color: var(--cyan);
+  color: var(--cyan);
+}
+.modal-type {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 0.75rem;
+}
+.modal-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+  line-height: 1.2;
+}
+.modal-author {
+  font-size: 1rem;
+  font-weight: 300;
+  color: rgba(240, 244, 248, 0.5);
+  margin-bottom: 1.5rem;
+}
+.modal-gift {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.1rem;
+  background: var(--cyan-soft);
+  border: 1px solid rgba(77, 217, 232, 0.15);
+  border-radius: 24px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--cyan);
+  margin-bottom: 1.5rem;
+}
+.modal-desc {
+  font-size: 1rem;
+  font-weight: 300;
+  color: rgba(240, 244, 248, 0.7);
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+.modal-video {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  border: 1px solid rgba(77, 217, 232, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+.modal-video svg { width: 48px; height: 48px; stroke: var(--cyan); opacity: 0.4; }
+.modal-video span {
+  font-size: 0.8rem;
+  color: rgba(240, 244, 248, 0.3);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.modal-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: var(--cyan);
+  color: var(--navy-deep);
+  border: none;
+  border-radius: 8px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+}
+.modal-cta:hover { background: var(--white); }
+
+/* ── DIVIDER ── */
+.cosmos-divider {
+  max-width: 1200px;
+  margin: 2rem auto 0;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.cosmos-divider::before,
+.cosmos-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(77, 217, 232, 0.15), transparent);
+}
+.cosmos-divider span {
+  font-size: 1.5rem;
+  opacity: 0.3;
+}
+
+/* ── DISCLAIMER ── */
+.disclaimer {
+  text-align: center;
+  padding: 3rem 2rem 2rem;
+  font-size: 0.75rem;
+  color: rgba(240, 244, 248, 0.25);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+.disclaimer a { color: var(--cyan); opacity: 0.5; text-decoration: none; }
+
+/* ── FOOTER ── */
+.cosmos-footer {
+  text-align: center;
+  padding: 2rem;
+  border-top: 1px solid rgba(77, 217, 232, 0.06);
+}
+.footer-brand {
+  font-family: 'Space Mono', monospace;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+.footer-brand span { color: var(--cyan); }
+.footer-copy {
+  font-size: 0.75rem;
+  color: rgba(240, 244, 248, 0.3);
+  margin-bottom: 1rem;
+}
+.footer-socials {
+  display: flex;
+  justify-content: center;
+  gap: 1.25rem;
+}
+.footer-socials a {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(240, 244, 248, 0.05);
+  transition: all 0.3s;
+  color: var(--white);
+}
+.footer-socials a:hover {
+  background: var(--cyan-soft);
+  color: var(--cyan);
+}
+.footer-socials svg { width: 16px; height: 16px; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+  40% { transform: translateX(-50%) translateY(-8px); }
+  60% { transform: translateX(-50%) translateY(-4px); }
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(0.95) translateY(10px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* ── STAGGER ── */
+.star-card { opacity: 0; animation: fadeInUp 0.6s ease-out forwards; }
+.star-card:nth-child(1) { animation-delay: 0.05s; }
+.star-card:nth-child(2) { animation-delay: 0.1s; }
+.star-card:nth-child(3) { animation-delay: 0.15s; }
+.star-card:nth-child(4) { animation-delay: 0.2s; }
+.star-card:nth-child(5) { animation-delay: 0.25s; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .nav-links.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(13, 26, 46, 0.95);
+    padding: 1.5rem 2rem;
+    gap: 1rem;
+    border-bottom: 1px solid rgba(77, 217, 232, 0.1);
+  }
+  .stars-grid { grid-template-columns: 1fr; }
+  .modal { padding: 1.5rem; margin: 1rem; }
+  .modal-title { font-size: 1.4rem; }
+  .hero-title { font-size: 2.2rem; }
+}
+
+@media (max-width: 480px) {
+  .nav { padding: 0.75rem 1rem; }
+  .section-header { padding: 4rem 1.5rem 2rem; }
+  .cosmos-section { padding: 0 1rem 3rem; }
+  .star-card { padding: 1.5rem; }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--navy-deep); }
+::-webkit-scrollbar-thumb { background: rgba(77, 217, 232, 0.2); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(77, 217, 232, 0.4); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="/" class="nav-logo">Flicko<span>.</span>online</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="/">Home</a></li>
+    <li><a href="/p/about.html">About</a></li>
+    <li><a href="/p/stories.html">Stories</a></li>
+    <li><a href="/p/contact.html">Contact</a></li>
+  </ul>
+  <button class="nav-hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <canvas id="starfield"></canvas>
+  <div class="hero-content">
+    <p class="hero-tagline">A cosmos of wisdom</p>
+    <h1 class="hero-title">Explore. Learn. Grow.</h1>
+    <p class="hero-subtitle">Curated books and stories that will change how you think, live, and see the world. All free to explore.</p>
+    <a href="#books" class="hero-cta">
+      Begin Your Journey
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+  <div class="scroll-indicator">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+  </div>
+</section>
+
+<!-- ═══════════════════════ BOOKS ═══════════════════════ -->
+<div id="books">
+  <div class="section-header">
+    <p class="section-label">15 Core Books</p>
+    <h2 class="section-title">Books That Build a Life</h2>
+    <p class="section-desc">Each of these books offers a gift — a shift in how you think, earn, love, or live. Click any star to explore.</p>
+  </div>
+
+  <div class="cosmos-section">
+
+    <!-- Cluster: Know Yourself -->
+    <div class="cluster-group">
+      <div class="cluster-title">
+        <svg class="cluster-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+        Know Yourself
+      </div>
+      <div class="stars-grid" id="books-know-yourself"></div>
+    </div>
+
+    <!-- Cluster: Build Your Life -->
+    <div class="cluster-group">
+      <div class="cluster-title">
+        <svg class="cluster-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 20h20M5 20V10l7-6 7 6v10"/><path d="M9 20v-6h6v6"/></svg>
+        Build Your Life
+      </div>
+      <div class="stars-grid" id="books-build-life"></div>
+    </div>
+
+    <!-- Cluster: Understand the World -->
+    <div class="cluster-group">
+      <div class="cluster-title">
+        <svg class="cluster-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        Understand the World
+      </div>
+      <div class="stars-grid" id="books-understand-world"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- DIVIDER -->
+<div class="cosmos-divider"><span>✦</span></div>
+
+<!-- ═══════════════════════ STORIES ═══════════════════════ -->
+<div id="stories">
+  <div class="section-header">
+    <p class="section-label">15 Short Stories</p>
+    <h2 class="section-title">Stories That Change How You See</h2>
+    <p class="section-desc">Each story takes minutes to read but stays with you for life. These aren't feel-good tales — they're wake-up calls.</p>
+  </div>
+
+  <div class="cosmos-section">
+
+    <!-- Cluster: Know Yourself -->
+    <div class="cluster-group">
+      <div class="cluster-title">
+        <svg class="cluster-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        Know Yourself
+      </div>
+      <div class="stars-grid" id="stories-know-yourself"></div>
+    </div>
+
+    <!-- Cluster: Question the World -->
+    <div class="cluster-group">
+      <div class="cluster-title">
+        <svg class="cluster-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"/></svg>
+        Question the World
+      </div>
+      <div class="stars-grid" id="stories-question-world"></div>
+    </div>
+
+    <!-- Cluster: Find What Matters -->
+    <div class="cluster-group">
+      <div class="cluster-title">
+        <svg class="cluster-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        Find What Matters
+      </div>
+      <div class="stars-grid" id="stories-find-matters"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- DISCLAIMER -->
+<div class="disclaimer">
+  Flicko is an AI-powered reading companion. Video content is researched and synthesised from publicly available reviews and reader experiences. Flicko.online is a creative brand by <a href="/p/about.html">Prashob Rajamohan</a>.
+</div>
+
+<!-- FOOTER -->
+<footer class="cosmos-footer">
+  <div class="footer-brand">Flicko<span>.</span>online</div>
+  <div class="footer-copy">&copy; 2026 | A creative brand by Prashob Rajamohan</div>
+  <div class="footer-socials">
+    <a href="#" target="_blank" title="YouTube">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.38.55A3.02 3.02 0 0 0 .5 6.19 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.81 3.02 3.02 0 0 0 2.12 2.14c1.88.55 9.38.55 9.38.55s7.5 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.81zM9.54 15.57V8.43L15.82 12l-6.28 3.57z"/></svg>
+    </a>
+    <a href="#" target="_blank" title="X / Twitter">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+    </a>
+    <a href="#" target="_blank" title="LinkedIn">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+    </a>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <div class="modal-type" id="modalType"></div>
+    <h2 class="modal-title" id="modalTitle"></h2>
+    <p class="modal-author" id="modalAuthor"></p>
+    <div class="modal-gift" id="modalGift"></div>
+    <p class="modal-desc" id="modalDesc"></p>
+    <div class="modal-video">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      <span>Video Coming Soon</span>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── DATA ──
+const books = {
+  "know-yourself": [
+    { id: 1, title: "Man's Search for Meaning", author: "Viktor Frankl", gift: "Unbreakable purpose", color: "cyan", desc: "Written by a Holocaust survivor and psychiatrist, this book argues that meaning — not pleasure or power — is the deepest human drive. Frankl shows how finding purpose in suffering transforms not just survival, but the quality of your entire life." },
+    { id: 2, title: "Meditations", author: "Marcus Aurelius", gift: "Inner peace", color: "lavender", desc: "Private journal entries from a Roman Emperor who never intended them to be read. Two thousand years later, his reflections on controlling what you can, accepting what you can't, and finding tranquility in chaos remain the most practical guide to inner calm ever written." },
+    { id: 3, title: "Ikigai", author: "Héctor García & Francesc Miralles", gift: "Finding your reason to live", color: "cyan", desc: "Drawing from the wisdom of Okinawa — home to the world's longest-living people — this book explores the Japanese concept of 'a reason for being.' It reveals how purpose, community, diet, and gentle movement create a life worth waking up for." },
+    { id: 4, title: "The Alchemist", author: "Paulo Coelho", gift: "Courage to follow your path", color: "gold", desc: "A shepherd boy's journey across the desert in search of treasure becomes a parable about listening to your heart, recognising opportunity, and understanding that the journey matters more than the destination." },
+    { id: 5, title: "The Diary of a Young Girl", author: "Anne Frank", gift: "Gratitude in darkness", color: "rose", desc: "A thirteen-year-old girl hiding from the Nazis in an Amsterdam attic writes with hope, humour, and startling maturity. Her diary is a reminder that even in the worst circumstances, the human spirit can find light, beauty, and reasons to believe in people." },
+  ],
+  "build-life": [
+    { id: 6, title: "Atomic Habits", author: "James Clear", gift: "Building a better life daily", color: "cyan", desc: "Forget motivation. Clear argues that tiny changes — 1% improvements compounded daily — create transformative results. The book gives you a practical system for building good habits and breaking bad ones, one small step at a time." },
+    { id: 7, title: "Deep Work", author: "Cal Newport", gift: "Focused living", color: "lavender", desc: "In a world of constant distraction, the ability to focus deeply is becoming both rare and valuable. Newport makes the case that concentrated, uninterrupted work is the superpower of the 21st century — and shows you exactly how to cultivate it." },
+    { id: 8, title: "Educated", author: "Tara Westover", gift: "Self-belief", color: "gold", desc: "Born to survivalist parents in rural Idaho, Westover never set foot in a classroom until age 17. By 27, she had a PhD from Cambridge. Her memoir is a stunning testament to the power of education and the courage it takes to reinvent yourself." },
+    { id: 9, title: "The Psychology of Money", author: "Morgan Housel", gift: "Healthy money mindset", color: "cyan", desc: "Money isn't about maths — it's about behaviour. Housel explores why people make irrational financial decisions and argues that knowing when 'enough' is enough matters more than knowing how to get more. The most important financial skill is contentment." },
+    { id: 10, title: "The Richest Man in Babylon", author: "George S. Clason", gift: "Financial discipline", color: "gold", desc: "Ancient Babylonian parables teach timeless financial wisdom: pay yourself first, live below your means, make your money work for you, and prepare for emergencies. Simple principles that, if followed, guarantee financial security over a lifetime." },
+  ],
+  "understand-world": [
+    { id: 11, title: "Sapiens", author: "Yuval Noah Harari", gift: "Understanding the world", color: "lavender", desc: "A sweeping history of our species from insignificant apes to masters of the planet. Harari challenges everything you think you know about religion, money, empires, and happiness — and forces you to reconsider what it means to be human." },
+    { id: 12, title: "1984", author: "George Orwell", gift: "Independent thinking", color: "rose", desc: "The most chilling political novel ever written. Orwell's dystopia — where truth is manufactured, language is weaponised, and surveillance is total — reads less like fiction every year. A permanent warning against surrendering your mind to any authority." },
+    { id: 13, title: "To Kill a Mockingbird", author: "Harper Lee", gift: "Moral courage", color: "gold", desc: "Through the eyes of a child in Depression-era Alabama, Lee tells a story about racism, injustice, and one father's quiet, unwavering moral courage. Atticus Finch remains literature's greatest model of doing what's right when it costs you everything." },
+    { id: 14, title: "Thinking, Fast and Slow", author: "Daniel Kahneman", gift: "Better decisions", color: "cyan", desc: "Nobel laureate Kahneman reveals the two systems that drive how we think: fast, intuitive System 1 and slow, deliberate System 2. Understanding how these systems interact — and where they fail — will fundamentally change how you make decisions." },
+    { id: 15, title: "Long Walk to Freedom", author: "Nelson Mandela", gift: "Resilience and leadership", color: "lavender", desc: "Twenty-seven years in prison couldn't break Mandela. His autobiography traces the journey from village boy to revolutionary to president — a masterclass in patience, forgiveness, and the belief that justice will prevail if you refuse to give up." },
+  ]
+};
+
+const stories = {
+  "know-yourself": [
+    { id: 16, title: "The Metamorphosis", author: "Franz Kafka", gift: "Shows what alienation really feels like", color: "lavender", desc: "Gregor Samsa wakes up as a giant insect. But the real horror isn't the transformation — it's watching his family slowly stop caring about him. Kafka's masterpiece captures the terror of becoming invisible to the people who should love you most." },
+    { id: 17, title: "Araby", author: "James Joyce", gift: "Captures the moment innocence breaks", color: "cyan", desc: "A boy in Dublin develops a crush and makes a grand romantic gesture — only to arrive too late and realise the hollowness of his own illusions. In just a few pages, Joyce captures the exact moment when childhood wonder gives way to adult disillusionment." },
+    { id: 18, title: "The Tell-Tale Heart", author: "Edgar Allan Poe", gift: "Makes you confront guilt and conscience", color: "rose", desc: "A murderer insists he is sane while confessing to killing an old man over nothing more than the look in his eye. Poe's genius is making you feel the narrator's guilt physically — the heartbeat that won't stop is your own conscience screaming." },
+    { id: 19, title: "The Yellow Wallpaper", author: "Charlotte Perkins Gilman", gift: "Exposes how systems silence people", color: "gold", desc: "A woman prescribed 'rest' by her physician husband slowly descends into madness — or perhaps awakens to a truth she was forbidden to speak. A devastating portrait of what happens when your reality is denied by the people who control your life." },
+    { id: 20, title: "The Open Boat", author: "Stephen Crane", gift: "Reveals nature's complete indifference to you", color: "lavender", desc: "Four men adrift in a tiny boat after a shipwreck. The sea doesn't care if they live or die. Crane strips away every comforting illusion about fate, fairness, or a universe that has a plan for you — and somehow makes survival feel more meaningful because of it." },
+  ],
+  "question-world": [
+    { id: 21, title: "The Lottery", author: "Shirley Jackson", gift: "Destroys blind conformity", color: "rose", desc: "A small town holds an annual lottery. Everyone participates. Nobody questions it. When you discover the prize, the horror isn't in the violence — it's in realising how easily ordinary people follow tradition without asking why." },
+    { id: 22, title: "Harrison Bergeron", author: "Kurt Vonnegut", gift: "Warns what forced equality really costs", color: "cyan", desc: "In a future where everyone is made 'equal' by handicapping the talented, a young man dares to remove his shackles. Vonnegut's dark satire asks: what happens when a society punishes excellence in the name of fairness?" },
+    { id: 23, title: "The Ones Who Walk Away from Omelas", author: "Ursula K. Le Guin", gift: "Asks what your happiness is built on", color: "gold", desc: "A perfect, joyful city — with one terrible secret. Le Guin forces you to answer a question you'd rather avoid: if your comfort depended on someone else's suffering, would you stay?" },
+    { id: 24, title: "The Necklace", author: "Guy de Maupassant", gift: "Shatters the illusion of appearances", color: "lavender", desc: "A woman borrows a diamond necklace to look rich at a party, loses it, and spends ten years in poverty paying for a replacement. The final twist reveals a truth about vanity and social pressure that still applies today." },
+    { id: 25, title: "An Occurrence at Owl Creek Bridge", author: "Ambrose Bierce", gift: "Bends your sense of time and reality", color: "cyan", desc: "A man is about to be hanged from a bridge during the Civil War. What follows is one of the most shocking endings in all of fiction — a story that forces you to question the nature of time, hope, and the stories our minds tell us to survive." },
+  ],
+  "find-matters": [
+    { id: 26, title: "The Gift of the Magi", author: "O. Henry", gift: "Redefines what sacrifice means in love", color: "gold", desc: "A young couple, each secretly sacrificing their most precious possession to buy a gift for the other, discovers that love isn't measured in objects but in what you're willing to give up. A century old and still the most perfect story about love ever written." },
+    { id: 27, title: "The Last Leaf", author: "O. Henry", gift: "Shows how small acts can save a life", color: "cyan", desc: "A dying woman believes she'll die when the last leaf falls from the vine outside her window. What she doesn't know is that someone made a quiet, invisible sacrifice to keep that leaf there. A story about the heroism hiding in ordinary people." },
+    { id: 28, title: "The Story of an Hour", author: "Kate Chopin", gift: "Questions what freedom really means", color: "rose", desc: "A woman learns her husband has died. For one hour, she feels something she never expected. What Chopin reveals about marriage, identity, and the silent prisons we build for ourselves still shocks readers over a century later." },
+    { id: 29, title: "A Good Man is Hard to Find", author: "Flannery O'Connor", gift: "Forces you to face moral reckoning", color: "lavender", desc: "A family road trip goes horribly wrong. O'Connor uses violence not for shock but for revelation — stripping away the grandmother's lifetime of self-deception in one terrifying moment of grace. You'll never forget the final scene." },
+    { id: 30, title: "A Clean, Well-Lighted Place", author: "Ernest Hemingway", gift: "Confronts loneliness and quiet dignity", color: "cyan", desc: "Two waiters discuss an old man who sits alone in a café every night. In Hemingway's spare, devastating prose, the story becomes a meditation on loneliness, the darkness that waits for all of us, and the small mercies that keep it at bay." },
+  ]
+};
+
+// ── RENDER CARDS ──
+function renderCards(data, containerPrefix, type) {
+  Object.keys(data).forEach(cluster => {
+    const container = document.getElementById(`${containerPrefix}-${cluster}`);
+    if (!container) return;
+    data[cluster].forEach(item => {
+      const card = document.createElement('div');
+      card.className = 'star-card';
+      card.onclick = () => openModal(item, type);
+      card.innerHTML = `
+        <div class="star-top">
+          <div class="star-dot ${item.color}"></div>
+          <div>
+            <div class="star-number">#${String(item.id).padStart(2, '0')}</div>
+            <div class="star-title">${item.title}</div>
+            <div class="star-author">${item.author}</div>
+          </div>
+        </div>
+        <div class="star-gift">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26z"/></svg>
+          ${item.gift}
+        </div>
+        <div class="star-preview">${item.desc}</div>
+        <div class="star-video-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Video coming soon
+        </div>
+      `;
+      container.appendChild(card);
+    });
+  });
+}
+
+renderCards(books, 'books', 'Core Book');
+renderCards(stories, 'stories', 'Short Story');
+
+// ── MODAL ──
+function openModal(item, type) {
+  document.getElementById('modalType').textContent = type;
+  document.getElementById('modalTitle').textContent = item.title;
+  document.getElementById('modalAuthor').textContent = `by ${item.author}`;
+  document.getElementById('modalGift').innerHTML = `
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26z"/></svg>
+    ${item.gift}
+  `;
+  document.getElementById('modalDesc').textContent = item.desc;
+  const overlay = document.getElementById('modal');
+  overlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('modal').addEventListener('click', e => {
+  if (e.target === e.currentTarget) closeModal();
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// ── STARFIELD CANVAS ──
+const canvas = document.getElementById('starfield');
+const ctx = canvas.getContext('2d');
+let stars = [];
+let mouseX = 0, mouseY = 0;
+
+function initStarfield() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  stars = [];
+  const count = Math.floor((canvas.width * canvas.height) / 3000);
+  for (let i = 0; i < count; i++) {
+    stars.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      size: Math.random() * 1.8 + 0.2,
+      opacity: Math.random() * 0.6 + 0.1,
+      speed: Math.random() * 0.3 + 0.05,
+      twinkleSpeed: Math.random() * 0.02 + 0.005,
+      twinklePhase: Math.random() * Math.PI * 2,
+    });
+  }
+}
+
+function drawStarfield() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Nebula glow
+  const g1 = ctx.createRadialGradient(canvas.width * 0.3, canvas.height * 0.4, 0, canvas.width * 0.3, canvas.height * 0.4, canvas.width * 0.4);
+  g1.addColorStop(0, 'rgba(77, 217, 232, 0.015)');
+  g1.addColorStop(1, 'transparent');
+  ctx.fillStyle = g1;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  const g2 = ctx.createRadialGradient(canvas.width * 0.75, canvas.height * 0.6, 0, canvas.width * 0.75, canvas.height * 0.6, canvas.width * 0.35);
+  g2.addColorStop(0, 'rgba(180, 167, 214, 0.01)');
+  g2.addColorStop(1, 'transparent');
+  ctx.fillStyle = g2;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  const time = Date.now() * 0.001;
+
+  stars.forEach(star => {
+    const twinkle = Math.sin(time * star.twinkleSpeed * 10 + star.twinklePhase) * 0.3 + 0.7;
+    const parallaxX = (mouseX - canvas.width / 2) * star.speed * 0.02;
+    const parallaxY = (mouseY - canvas.height / 2) * star.speed * 0.02;
+
+    ctx.beginPath();
+    ctx.arc(star.x + parallaxX, star.y + parallaxY, star.size, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(200, 220, 240, ${star.opacity * twinkle})`;
+    ctx.fill();
+
+    if (star.size > 1.2) {
+      ctx.beginPath();
+      ctx.arc(star.x + parallaxX, star.y + parallaxY, star.size * 2.5, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(77, 217, 232, ${star.opacity * twinkle * 0.08})`;
+      ctx.fill();
+    }
+  });
+
+  requestAnimationFrame(drawStarfield);
+}
+
+window.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; });
+window.addEventListener('resize', initStarfield);
+initStarfield();
+drawStarfield();
+
+// ── SCROLL ANIMATIONS ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.animationPlayState = 'running';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.star-card').forEach(card => {
+  card.style.animationPlayState = 'paused';
+  observer.observe(card);
+});
+</script>
+
+</body>
+</html>
