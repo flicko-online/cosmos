@@ -340,6 +340,8 @@ body {
   letter-spacing: 0.05em;
 }
 .star-video-badge svg { width: 16px; height: 16px; opacity: 0.5; }
+.star-video-badge.has-video { color: var(--cyan); }
+.star-video-badge.has-video svg { opacity: 1; stroke: var(--cyan); }
 
 /* ── MODAL ── */
 .modal-overlay {
@@ -755,7 +757,7 @@ body {
     <p class="modal-author" id="modalAuthor"></p>
     <div class="modal-gift" id="modalGift"></div>
     <p class="modal-desc" id="modalDesc"></p>
-    <div class="modal-video">
+    <div class="modal-video" id="modalVideo">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
       <span>Video Coming Soon</span>
     </div>
@@ -766,7 +768,7 @@ body {
 // ── DATA ──
 const books = {
   "know-yourself": [
-    { id: 1, title: "Man's Search for Meaning", author: "Viktor Frankl", gift: "Unbreakable purpose", color: "cyan", desc: "Written by a Holocaust survivor and psychiatrist, this book argues that meaning — not pleasure or power — is the deepest human drive. Frankl shows how finding purpose in suffering transforms not just survival, but the quality of your entire life." },
+    { id: 1, title: "Man's Search for Meaning", author: "Viktor Frankl", gift: "Unbreakable purpose", color: "cyan", video: "fu_VBc2u0t0", desc: "Written by a Holocaust survivor and psychiatrist, this book argues that meaning — not pleasure or power — is the deepest human drive. Frankl shows how finding purpose in suffering transforms not just survival, but the quality of your entire life." },
     { id: 2, title: "Meditations", author: "Marcus Aurelius", gift: "Inner peace", color: "lavender", desc: "Private journal entries from a Roman Emperor who never intended them to be read. Two thousand years later, his reflections on controlling what you can, accepting what you can't, and finding tranquility in chaos remain the most practical guide to inner calm ever written." },
     { id: 3, title: "Ikigai", author: "Héctor García & Francesc Miralles", gift: "Finding your reason to live", color: "cyan", desc: "Drawing from the wisdom of Okinawa — home to the world's longest-living people — this book explores the Japanese concept of 'a reason for being.' It reveals how purpose, community, diet, and gentle movement create a life worth waking up for." },
     { id: 4, title: "The Alchemist", author: "Paulo Coelho", gift: "Courage to follow your path", color: "gold", desc: "A shepherd boy's journey across the desert in search of treasure becomes a parable about listening to your heart, recognising opportunity, and understanding that the journey matters more than the destination." },
@@ -835,9 +837,9 @@ function renderCards(data, containerPrefix, type) {
           ${item.gift}
         </div>
         <div class="star-preview">${item.desc}</div>
-        <div class="star-video-badge">
+        <div class="star-video-badge ${item.video ? 'has-video' : ''}">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-          Video coming soon
+          ${item.video ? 'Watch now' : 'Video coming soon'}
         </div>
       `;
       container.appendChild(card);
@@ -858,12 +860,22 @@ function openModal(item, type) {
     ${item.gift}
   `;
   document.getElementById('modalDesc').textContent = item.desc;
+  const videoDiv = document.getElementById('modalVideo');
+  if (item.video) {
+    videoDiv.innerHTML = `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${item.video}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border-radius:10px;"></iframe>`;
+    videoDiv.style.background = '#000';
+  } else {
+    videoDiv.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"/></svg><span>Video Coming Soon</span>`;
+    videoDiv.style.background = 'rgba(0,0,0,0.3)';
+  }
   const overlay = document.getElementById('modal');
   overlay.classList.add('active');
   document.body.style.overflow = 'hidden';
 }
 
 function closeModal() {
+  const videoDiv = document.getElementById('modalVideo');
+  videoDiv.innerHTML = '';
   document.getElementById('modal').classList.remove('active');
   document.body.style.overflow = '';
 }
