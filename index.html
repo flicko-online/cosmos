@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +19,7 @@ canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-
 /* Nav */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:.6rem 1.5rem;display:flex;justify-content:space-between;align-items:center;backdrop-filter:blur(14px);background:rgba(11,21,37,.82);border-bottom:1px solid var(--gb)}
 .logo{font-family:var(--fd);font-size:1.1rem;font-weight:700;color:var(--c);text-decoration:none}
-.nl{display:flex;gap:1rem;list-style:none}.nl a{color:var(--td);text-decoration:none;font-size:.72rem;font-weight:500;letter-spacing:.02em;transition:color .3s}.nl a:hover{color:var(--c)}
+.nl{display:flex;gap:1rem;list-style:none}.nl a{color:var(--td);text-decoration:none;font-size:.8rem;font-weight:500;letter-spacing:.02em;transition:color .3s}.nl a:hover{color:var(--c)}
 .mb{display:none;background:none;border:none;color:var(--t);font-size:1.2rem;cursor:pointer}
 /* Hero */
 .hero{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:2rem 1.5rem}
@@ -28,65 +27,67 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:.6rem 1.5rem;display
 .hq em{color:var(--c);font-style:italic}
 .hs{font-size:.88rem;color:var(--td);margin-top:1rem;max-width:480px;opacity:0;animation:fu 1s .3s forwards}
 .hc{display:flex;gap:1.8rem;margin-top:1.8rem;flex-wrap:wrap;justify-content:center;opacity:0;animation:fu 1s .55s forwards}
-.hc div{text-align:center}.hc b{font-family:var(--fd);font-size:1.5rem;color:var(--c);display:block}.hc span{font-size:.5rem;color:var(--td);text-transform:uppercase;letter-spacing:.06em}
+.hc div{text-align:center}.hc b{font-family:var(--fd);font-size:1.5rem;color:var(--c);display:block}.hc span{font-size:.6rem;color:var(--td);text-transform:uppercase;letter-spacing:.06em}
 .hn{display:flex;gap:.6rem;margin-top:2rem;flex-wrap:wrap;justify-content:center;opacity:0;animation:fu 1s .75s forwards}
-.hn a{padding:.4rem 1rem;border:1px solid var(--gb);border-radius:2rem;color:var(--td);text-decoration:none;font-size:.68rem;font-weight:500;transition:all .3s}
+.hn a{padding:.45rem 1rem;border:1px solid var(--gb);border-radius:2rem;color:var(--td);text-decoration:none;font-size:.75rem;font-weight:500;transition:all .3s}
 .hn a:hover{border-color:var(--c);color:var(--c)}
 .sa{position:absolute;bottom:1.5rem;opacity:0;animation:fu 1s .9s forwards}
 .sa span{font-size:.5rem;color:var(--td);letter-spacing:.1em;text-transform:uppercase;display:block;text-align:center;margin-bottom:.3rem}
 .sa i{display:block;width:13px;height:13px;border-right:2px solid var(--c);border-bottom:2px solid var(--c);transform:rotate(45deg);margin:0 auto;animation:bd 2s infinite}
 /* Sections */
 .s{position:relative;z-index:1;max-width:830px;margin:0 auto;padding:4rem 1.5rem}
-.sl{font-size:.58rem;letter-spacing:.13em;text-transform:uppercase;color:var(--c);margin-bottom:.2rem}
+.sl{font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;color:var(--c);margin-bottom:.25rem}
 .sl.r{color:var(--r)}.sl.g{color:var(--go)}.sl.p{color:#C084FC}
-.st{font-family:var(--fd);font-size:clamp(1.3rem,3vw,1.8rem);font-weight:400;line-height:1.3;margin-bottom:.5rem}
-.si{color:var(--tb);font-size:.83rem;max-width:580px;margin-bottom:1.8rem}
+.st{font-family:var(--fd);font-size:clamp(1.4rem,3vw,2rem);font-weight:400;line-height:1.3;margin-bottom:.6rem}
+.si{color:var(--tb);font-size:.9rem;max-width:580px;margin-bottom:2rem}
 .dv{width:30px;height:1px;background:var(--cg);margin:2rem auto}.dv.r{background:var(--rg)}.dv.p{background:rgba(192,132,252,.2)}
 /* Topic cards */
 .tc{background:var(--gl);border:1px solid var(--gb);border-radius:7px;overflow:hidden;cursor:pointer;margin-bottom:.4rem;transition:border-color .3s}.tc:hover{border-color:var(--cg)}
 .th{display:flex;align-items:center;gap:.5rem;padding:.7rem .9rem}
 .tn{font-family:var(--fd);font-size:1.2rem;font-weight:700;color:var(--c);min-width:1.5rem;text-align:center}
-.ti{flex:1}.tt{font-family:var(--fd);font-size:.9rem;font-weight:700}.tk{font-size:.68rem;color:var(--td);margin-top:.05rem;line-height:1.25}
+.ti{flex:1}.tt{font-family:var(--fd);font-size:.9rem;font-weight:700}.tk{font-size:.78rem;color:var(--td);margin-top:.08rem;line-height:1.3}
 .tg{width:20px;height:20px;border-radius:50%;border:1px solid var(--gb);display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .tg svg{width:8px;height:8px;stroke:var(--c);transition:transform .3s}.tc.op .tg svg{transform:rotate(180deg)}
 .tb{max-height:0;overflow:hidden;transition:max-height .4s ease}
-.tx{padding:0 .9rem .7rem 3rem}.tx p{color:var(--tb);font-size:.78rem;margin-bottom:.4rem;line-height:1.6}.tx em{color:var(--c);font-style:normal;font-weight:500}
-.ab{background:var(--cd);border-radius:5px;padding:.5rem .7rem;margin-top:.15rem}
-.ab h4{font-size:.55rem;letter-spacing:.06em;text-transform:uppercase;color:var(--c);margin-bottom:.3rem}
-.ab li{position:relative;padding-left:.8rem;font-size:.7rem;color:var(--tb);margin-bottom:.25rem;line-height:1.4;list-style:none}
-.ab li::before{content:'\2192';position:absolute;left:0;color:var(--c);font-size:.65rem}.ab li strong{color:var(--t)}
+.tx{padding:0 .9rem .8rem 3rem}.tx p{color:var(--tb);font-size:.88rem;margin-bottom:.5rem;line-height:1.7}.tx em{color:var(--c);font-style:normal;font-weight:500}
+.ab{background:var(--cd);border-radius:6px;padding:.6rem .8rem;margin-top:.2rem}
+.ab h4{font-size:.65rem;letter-spacing:.06em;text-transform:uppercase;color:var(--c);margin-bottom:.4rem}
+.ab li{position:relative;padding-left:.9rem;font-size:.82rem;color:var(--tb);margin-bottom:.3rem;line-height:1.5;list-style:none}
+.ab li::before{content:'\2192';position:absolute;left:0;color:var(--c);font-size:.75rem}.ab li strong{color:var(--t)}
 /* Proof pairs */
 .pp{display:grid;grid-template-columns:1fr 22px 1fr;border-radius:7px;overflow:hidden;border:1px solid var(--gb);margin-bottom:.4rem}
-.pd{padding:.5rem;background:rgba(232,80,79,.03)}.pv{display:flex;align-items:center;justify-content:center;font-size:.45rem;font-weight:600;color:var(--td);background:rgba(11,21,37,.5)}.pl{padding:.5rem;background:rgba(85,196,155,.02)}
-.pn{font-size:.72rem;font-weight:600}.pw{font-size:.64rem;color:var(--td);margin-top:.06rem;line-height:1.25}.pe{font-size:.64rem;margin-top:.12rem;font-weight:500}
+.pd{padding:.7rem;background:rgba(232,80,79,.03)}.pv{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:.55rem;font-weight:600;color:var(--td);background:rgba(11,21,37,.5);padding:0 3px}.pl{padding:.7rem;background:rgba(85,196,155,.02)}
+.pn{font-size:.88rem;font-weight:600}.pw{font-size:.78rem;color:var(--td);margin-top:.08rem;line-height:1.3}.pe{font-size:.78rem;margin-top:.15rem;font-weight:500}
 .pf{color:var(--r)}.pw2{color:var(--g)}
-.dt{font-size:.42rem;padding:1px 2px;border-radius:2px;background:var(--rd);color:var(--r);margin-left:2px}
-.lt{font-size:.42rem;padding:1px 2px;border-radius:2px;background:var(--gd);color:var(--g);margin-left:2px}
+.dt{font-size:.55rem;padding:2px 4px;border-radius:3px;background:var(--rd);color:var(--r);margin-left:3px}
+.lt{font-size:.55rem;padding:2px 4px;border-radius:3px;background:var(--gd);color:var(--g);margin-left:3px}
 /* Shadow */
-.se{padding:.3rem .5rem;border-radius:5px;border:1px solid rgba(232,80,79,.05);margin-bottom:.25rem;transition:border-color .3s}
+.se{padding:.45rem .6rem;border-radius:5px;border:1px solid rgba(232,80,79,.05);margin-bottom:.3rem;transition:border-color .3s}
 .se:hover{border-color:rgba(232,80,79,.15);background:rgba(232,80,79,.015)}
-.sn{font-size:.72rem;font-weight:500}.sd{font-size:.62rem;color:var(--td);line-height:1.25}
-.sc{font-size:.42rem;padding:1px 3px;border-radius:2px;background:var(--rd);color:var(--r);margin-left:2px}
+.sn{font-size:.85rem;font-weight:500}.sd{font-size:.75rem;color:var(--td);line-height:1.3}
+.sc{font-size:.55rem;padding:2px 4px;border-radius:3px;background:var(--rd);color:var(--r);margin-left:3px}
 /* Wisdom timeline */
 .tw{position:relative;padding-left:1rem}.tl{position:absolute;left:4px;top:0;bottom:0;width:1px;background:linear-gradient(transparent,var(--cg) 2%,var(--cg) 98%,transparent)}
-.wg{margin-bottom:1rem}.wl{font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.25rem;padding-left:.2rem}
+.wg{margin-bottom:1.2rem}.wl{font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.3rem;padding-left:.2rem}
 .wl.e{color:var(--go)}.wl.d{color:var(--c)}.wl.f{color:var(--g)}
-.we{display:flex;align-items:flex-start;gap:.4rem;padding:.15rem 0;opacity:.5;transition:opacity .3s}.we:hover{opacity:1}
-.wd{width:5px;height:5px;border-radius:50%;background:var(--nd);border:1.5px solid var(--cg);margin-top:4px;flex-shrink:0;transition:background .3s}.we:hover .wd{background:var(--c)}
-.wn{font-size:.7rem;font-weight:500}.ww{font-size:.6rem;color:var(--td);line-height:1.2}
-.wt{font-size:.42rem;padding:1px 3px;border-radius:2px;background:var(--cd);color:var(--c)}
-.cs{font-size:.5rem;padding:1px 4px;border-radius:2px;background:rgba(192,132,252,.1);color:#C084FC;margin-left:3px}
+.we{display:flex;align-items:flex-start;gap:.5rem;padding:.22rem 0;opacity:.55;transition:opacity .3s}.we:hover{opacity:1}
+.wd{width:6px;height:6px;border-radius:50%;background:var(--nd);border:1.5px solid var(--cg);margin-top:5px;flex-shrink:0;transition:background .3s}.we:hover .wd{background:var(--c)}
+.wn{font-size:.85rem;font-weight:500}.ww{font-size:.75rem;color:var(--td);line-height:1.25}
+.wt{font-size:.55rem;padding:2px 4px;border-radius:3px;background:var(--cd);color:var(--c)}
+.cs{font-size:.55rem;padding:2px 5px;border-radius:3px;background:rgba(192,132,252,.1);color:#C084FC;margin-left:4px}
 /* Stories grid */
 .sg2{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:.5rem}
-.sk{background:var(--gl);border:1px solid var(--gb);border-radius:7px;padding:.7rem;transition:border-color .3s;text-decoration:none;color:var(--t);display:block}
+.sk{background:var(--gl);border:1px solid var(--gb);border-radius:7px;overflow:hidden;transition:border-color .3s;text-decoration:none;color:var(--t);display:block}
 .sk:hover{border-color:var(--cg)}
-.sk-t{font-size:.78rem;font-weight:600;margin-bottom:.15rem}.sk-p{font-size:.6rem;color:var(--go)}.sk-d{font-size:.6rem;color:var(--td);margin-top:.15rem;line-height:1.3}
+.sk-cv{height:200px;border-radius:5px 5px 0 0;overflow:hidden;display:flex;align-items:center;justify-content:center;background:var(--nd)}
+.sk-cv img{max-width:100%;max-height:100%;object-fit:contain}
+.sk-t{font-size:.82rem;font-weight:600;padding:.4rem .5rem .4rem;text-align:center}
 /* Subscribe */
 .sub-box{background:var(--gl);border:1px solid var(--gb);border-radius:10px;padding:1.5rem;text-align:center;max-width:480px;margin:0 auto}
 .sub-box h3{font-family:var(--fd);font-size:1.2rem;margin-bottom:.3rem}
 .sub-box p{font-size:.75rem;color:var(--td);margin-bottom:1rem}
 .sub-form{display:flex;gap:.4rem;max-width:360px;margin:0 auto}
-.sub-form input{flex:1;padding:.45rem .7rem;border:1px solid var(--gb);border-radius:2rem;background:rgba(11,21,37,.6);color:var(--t);font-size:.75rem;font-family:var(--fb);outline:none;transition:border-color .3s}
+.sub-form input{flex:1;padding:.5rem .8rem;border:1px solid var(--gb);border-radius:2rem;background:rgba(11,21,37,.6);color:var(--t);font-size:.82rem;font-family:var(--fb);outline:none;transition:border-color .3s}
 .sub-form input:focus{border-color:var(--c)}
 .sub-form input::placeholder{color:var(--td)}
 .sub-form button{padding:.45rem 1rem;border:none;border-radius:2rem;background:var(--c);color:var(--nd);font-size:.72rem;font-weight:600;cursor:pointer;font-family:var(--fb);transition:opacity .3s}
@@ -95,15 +96,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:.6rem 1.5rem;display
 /* Contact */
 .cf{max-width:480px;margin:0 auto}
 .cf-row{margin-bottom:.5rem}
-.cf-row label{font-size:.65rem;color:var(--td);display:block;margin-bottom:.15rem;letter-spacing:.03em}
-.cf-row input,.cf-row textarea{width:100%;padding:.4rem .6rem;border:1px solid var(--gb);border-radius:6px;background:rgba(11,21,37,.6);color:var(--t);font-size:.75rem;font-family:var(--fb);outline:none;transition:border-color .3s}
+.cf-row label{font-size:.75rem;color:var(--td);display:block;margin-bottom:.2rem;letter-spacing:.03em}
+.cf-row input,.cf-row textarea{width:100%;padding:.5rem .7rem;border:1px solid var(--gb);border-radius:6px;background:rgba(11,21,37,.6);color:var(--t);font-size:.82rem;font-family:var(--fb);outline:none;transition:border-color .3s}
 .cf-row input:focus,.cf-row textarea:focus{border-color:var(--c)}
 .cf-row textarea{height:80px;resize:vertical}
 .cf-btn{padding:.45rem 1.2rem;border:1px solid var(--c);border-radius:2rem;background:transparent;color:var(--c);font-size:.72rem;font-weight:600;cursor:pointer;font-family:var(--fb);transition:all .3s;margin-top:.3rem}
 .cf-btn:hover{background:var(--c);color:var(--nd)}
 .cf-msg{font-size:.7rem;color:var(--g);margin-top:.4rem;display:none}
 /* Footer */
-.ft{text-align:center;padding:1rem;border-top:1px solid var(--gb);font-size:.55rem;color:var(--td);position:relative;z-index:1}.ft a{color:var(--c);text-decoration:none}
+.ft{text-align:center;padding:1rem;border-top:1px solid var(--gb);font-size:.7rem;color:var(--td);position:relative;z-index:1}.ft a{color:var(--c);text-decoration:none}
 /* Animations */
 @keyframes fu{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
 @keyframes bd{0%,100%{transform:rotate(45deg) translateY(0)}50%{transform:rotate(45deg) translateY(4px)}}
@@ -156,11 +157,26 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:.6rem 1.5rem;display
 <div class="s" id="stories">
 <p class="sl p">My Stories</p>
 <h2 class="st">Short fiction by Prashob Rajamohan</h2>
-<p class="si">17 indie short stories on Amazon KDP. Dark, thought-provoking, and always under 100 pages. Pick one that speaks to you.</p>
+<p class="si">17 indie short stories on Amazon Kindle. Dark, thought-provoking, and always under 100 pages. Tap any cover to read.</p>
 <div class="sg2">
-<a href="https://www.amazon.in/dp/B0DFZ5MZNG" target="_blank" class="sk"><div class="sk-t">The Invisible Resistance</div><div class="sk-p">&#8377;49 Kindle &bull; Paperback available</div><div class="sk-d">When the system fights you, fight back with silence.</div></a>
-<a href="https://www.amazon.in/stores/Prashob-Rajamohan/author/B0DFWZ49VF" target="_blank" class="sk"><div class="sk-t">All 17 Stories</div><div class="sk-p">&#8377;49 &#8211; &#8377;79 each</div><div class="sk-d">Browse the complete collection on Amazon KDP.</div></a>
+<a href="https://www.amazon.com/dp/B0GNW4XPF4" target="_blank" class="sk"><div class="sk-cv"><img src="https://m.media-amazon.com/images/I/71yRBHifIbL._SY466_.jpg" alt="The Eccentric Millionaire" loading="lazy"></div><div class="sk-t">The Eccentric Millionaire</div></a>
+<a href="https://www.amazon.com/dp/B0GMDH95D5" target="_blank" class="sk"><div class="sk-cv"><img src="https://m.media-amazon.com/images/I/41m6fSxuCuL._SY445_SX342_QL70_FMwebp_.jpg" alt="The Devil's Trap" loading="lazy"></div><div class="sk-t">The Devil&#8217;s Trap</div></a>
+<a href="https://www.amazon.com/dp/B0FYK7CVL6" target="_blank" class="sk"><div class="sk-cv"><img src="https://m.media-amazon.com/images/I/41qcFnIPwjL._SY445_SX342_QL70_FMwebp_.jpg" alt="A Birthday Without a Gift" loading="lazy"></div><div class="sk-t">A Birthday Without a Gift</div></a>
+<a href="https://www.amazon.com/dp/B0GJSXG3DW" target="_blank" class="sk"><div class="sk-cv"><img src="https://m.media-amazon.com/images/I/71Tdy-VCZFL._SY466_.jpg" alt="The Invisible Resistance" loading="lazy"></div><div class="sk-t">The Invisible Resistance</div></a>
+<a href="https://www.amazon.com/dp/B0GJGGZCTV" target="_blank" class="sk"><div class="sk-cv"><img src="https://m.media-amazon.com/images/I/51tI7YLbW2L._SY445_SX342_QL70_FMwebp_.jpg" alt="The Oath of Red Cloak" loading="lazy"></div><div class="sk-t">The Oath of Red Cloak</div></a>
+<a href="https://www.amazon.com/dp/B0GJ14LSQ9" target="_blank" class="sk"><div class="sk-cv"><img src="https://m.media-amazon.com/images/I/71vJhQLg86L._SY466_.jpg" alt="When The Ocean Came Home" loading="lazy"></div><div class="sk-t">When The Ocean Came Home</div></a>
+<a href="https://www.amazon.com/dp/B0GCL3HFHW" target="_blank" class="sk"><div class="sk-cv"><img src="https://m.media-amazon.com/images/I/31QSNf5mNAL._SY445_SX342_QL70_FMwebp_.jpg" alt="The Last Voice Note" loading="lazy"></div><div class="sk-t">The Last Voice Note</div></a>
+<a href="https://www.amazon.com/dp/B0GHZP4QKW" target="_blank" class="sk"><div class="sk-cv"><img src="https://m.media-amazon.com/images/I/51sn8iig+yL._SY445_SX342_QL70_FMwebp_.jpg" alt="Half A Spear" loading="lazy"></div><div class="sk-t">Half A Spear</div></a>
+<a href="https://www.amazon.com/dp/B0GF3BRCNF" target="_blank" class="sk"><div class="sk-cv"><img src="https://m.media-amazon.com/images/I/71Hl2Ky06lL._SY466_.jpg" alt="Karma Meets Credit" loading="lazy"></div><div class="sk-t">Karma Meets Credit</div></a>
+<a href="https://www.amazon.com/dp/B0G5KF34XG" target="_blank" class="sk"><div class="sk-cv"><img src="https://m.media-amazon.com/images/I/71+O1E9SZCL._SY466_.jpg" alt="Magic Eraser" loading="lazy"></div><div class="sk-t">Magic Eraser</div></a>
+<a href="https://www.amazon.com/dp/B0G5KT9M9Y" target="_blank" class="sk"><div class="sk-cv"><img src="https://m.media-amazon.com/images/I/81jypc4EtuL._SY466_.jpg" alt="The Desert Key" loading="lazy"></div><div class="sk-t">The Desert Key</div></a>
+<a href="https://www.amazon.com/dp/B0G4K3G8Y2" target="_blank" class="sk"><div class="sk-cv"><img src="https://m.media-amazon.com/images/I/51+UpwPIRiL._SY445_SX342_QL70_FMwebp_.jpg" alt="Winter Guest" loading="lazy"></div><div class="sk-t">Winter Guest</div></a>
+<a href="https://www.amazon.com/dp/B0FZ5WRZPJ" target="_blank" class="sk"><div class="sk-cv"><img src="https://m.media-amazon.com/images/I/61k7y6H2H6L._SY466_.jpg" alt="The Silent Wish" loading="lazy"></div><div class="sk-t">The Silent Wish</div></a>
+<a href="https://www.amazon.com/dp/B0G4KL9JB9" target="_blank" class="sk"><div class="sk-cv"><img src="https://m.media-amazon.com/images/I/41ZMQ5hQDfL._SY445_SX342_QL70_FMwebp_.jpg" alt="From Doom To Den" loading="lazy"></div><div class="sk-t">From Doom To Den</div></a>
+<a href="https://www.amazon.com/dp/B0G5BQWJPV" target="_blank" class="sk"><div class="sk-cv"><img src="https://m.media-amazon.com/images/I/51RjFdGUUNL._SY445_SX342_QL70_FMwebp_.jpg" alt="Star Light" loading="lazy"></div><div class="sk-t">Star Light</div></a>
+<a href="https://www.amazon.com/dp/B0GGKYTNRT" target="_blank" class="sk"><div class="sk-cv"><img src="https://m.media-amazon.com/images/I/41FvkmYGPNL._SY445_SX342_QL70_FMwebp_.jpg" alt="The Dangerous Chit" loading="lazy"></div><div class="sk-t">The Dangerous Chit</div></a>
 </div>
+<p style="text-align:center;margin-top:1rem"><a href="https://www.amazon.in/s?k=prashob+rajamohan&crid=3ARKVAWNO5N7Z&sprefix=Prashob%2Caps%2C387&ref=nb_sb_ss_mvt-t11-ranker_2_7" target="_blank" class="ca">Browse all stories on Amazon &#8594;</a></p>
 </div>
 <div class="dv"></div>
 
@@ -219,7 +235,7 @@ const T=[
 document.getElementById('TG').innerHTML=T.map(t=>`<div class="tc rv" onclick="TT(this)"><div class="th"><span class="tn">${t.n}</span><div class="ti"><div class="tt">${t.t}</div><div class="tk">${t.h}</div></div><div class="tg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div></div><div class="tb"><div class="tx">${t.b}<div class="ab"><h4>What you can do today</h4><ul>${t.a.map(x=>`<li>${x}</li>`).join('')}</ul></div></div></div></div>`).join('');
 
 const P=[["Nero","Terror, burned Rome","\u2192 Suicide at 30","Marcus Aurelius","Stoic duty","\u2192 Read 2,000 yrs later"],["Hitler","Propaganda, genocide","\u2192 Bunker. 60M dead","Gandhi","Non-violence","\u2192 Changed world unarmed"],["Madoff","$65B Ponzi","\u2192 Died in prison","Ratan Tata","66% to charity","\u2192 Trusted for generations"],["Holmes/Theranos","Faked tests","\u2192 11 yrs prison","Marie Curie","Real science","\u2192 2 Nobel Prizes"],["Napoleon","Force","\u2192 Exiled, died alone","Lincoln","Moral courage","\u2192 Ended slavery"],["Rasputin","Fake mystic","\u2192 Dynasty fell","Vivekananda","Arise, awake","\u2192 Chicago changed history"],["Genghis Khan","40M killed","\u2192 Empire fractured","Ashoka","Chose compassion","\u2192 India\u2019s flag today"],["Belfort","Securities fraud","\u2192 Prison, $100M+ owed","Naval","Value creation","\u2192 Wealthy + free"],["Armstrong","Doped 7 titles","\u2192 All stripped","Kipchoge","Clean, humble","\u2192 No human is limited"],["Enron","Fake books","\u2192 20K ruined","Tata Group","156 yrs ethical","\u2192 Billions trust it"],["SBF/FTX","Stole $8B","\u2192 25 yrs, age 32","Satyarthi","80K children rescued","\u2192 Nobel Prize"],["Sacklers","Pushed opioids","\u2192 500K+ dead","Nightingale","Compassion system","\u2192 Founded nursing"],["Leopold II","10M dead","\u2192 Statues torn down","Mandela","27 yrs \u2192 forgiveness","\u2192 Nobel Prize"],["Weinstein","Decades abuse","\u2192 Prison, #MeToo","Malala","Shot, stood up","\u2192 Youngest Nobel"],["Stalin","Purges, 20M","\u2192 Died paranoid","Dalai Lama","Chose kindness","\u2192 Loved by millions"],["Cambridge Analytica","87M exploited","\u2192 Dissolved","Wikipedia","Free knowledge","\u2192 5th most visited"],["East India Co.","$45T drained","\u2192 Dissolved","Gandhi+Ambedkar","Constitution+truth","\u2192 Largest democracy"],["Ponzi","Original scheme","\u2192 Died penniless","Franklin","Knowledge pays","\u2192 Face on $100"],["Escobar","$30B cocaine","\u2192 Shot dead","Kalam","Missiles\u2192President","\u2192 People\u2019s President"],["Delvey","Fake identity","\u2192 Deported","Bren\u00e9 Brown","Radical honesty","\u2192 60M TED views"]];
-document.getElementById('PG').innerHTML=P.map(p=>`<div class="pp rv"><div class="pd"><div class="pn">${p[0]} <span class="dt">DARK</span></div><div class="pw">${p[1]}</div><div class="pe pf">${p[2]}</div></div><div class="pv">VS</div><div class="pl"><div class="pn">${p[3]} <span class="lt">LIGHT</span></div><div class="pw">${p[4]}</div><div class="pe pw2">${p[5]}</div></div></div>`).join('');
+document.getElementById('PG').innerHTML=P.map(p=>`<div class="pp rv"><div class="pd"><div class="pn">${p[0]} <span class="dt">DARK</span></div><div class="pw">${p[1]}</div><div class="pe pf">${p[2]}</div></div><div class="pv"><span>VS</span><br><span class="cs" style="margin:0;font-size:.38rem">Coming soon</span></div><div class="pl"><div class="pn">${p[3]} <span class="lt">LIGHT</span></div><div class="pw">${p[4]}</div><div class="pe pw2">${p[5]}</div></div></div>`).join('');
 
 const S=[["Narcissism \u2014 The Mask Behind the Charm","How narcissists operate and how to protect yourself"],["Dark Psychology \u2014 Complete Guide","What it is, how it works, how to defend yourself"],["Gaslighting \u2014 How to Recognize It","The tactic making you doubt reality"],["48 Laws of Power \u2014 Decoded","Each law: short-term win, long-term ruin"],["Hitler / Mein Kampf \u2014 Dissected","Victimhood + propaganda = monster"],["Napoleon \u2014 Ambition Without Limits","Hero to exiled dictator"],["Nazi Propaganda Machine","How an educated nation was brainwashed"],["Logical Fallacies \u2014 Complete List","How bad arguments fool smart people"],["Cognitive Biases \u2014 Brain\u2019s Bugs","Confirmation bias, sunk cost, anchoring"],["Genghis Khan \u2014 Cost of Conquest","40M dead for empire"],["Fall of the Roman Empire","When corruption kills civilisation"],["Ayn Rand \u2014 Why Selfishness Fails","Atlas Shrugged critique"],["Emotional Manipulation \u2014 10 Tactics","Guilt-tripping, DARVO, silent treatment"],["Theranos \u2014 $9 Billion Lie","Fake blood tests, real prison"],["Algorithm Manipulation","How platforms exploit your psychology"],["Salem Witch Trials","Fear, hysteria, groupthink"],["Stanford Prison Experiment","Students became sadists in 6 days"],["Wolf of Wall Street \u2014 True Story","Glamour to prison"],["Robert Greene \u2014 Laws of Human Nature","Every dark pattern mapped"],["Art of Seduction \u2014 Decoded","How seduction empties you"],["Stalin \u2014 Purges and Paranoia","20M dead. Absolute power."],["Love Bombing \u2014 Red Flags","When affection is a weapon"],["Dark Triad Personality","Narcissism + Machiavellianism + Psychopathy"],["Milgram Obedience Experiment","65% electrocuted on command"],["Sacklers / Opioid Crisis","500K+ dead for profit"],["Rasputin \u2014 Mad Monk","Blind faith destroyed Romanovs"],["Madoff \u2014 Ponzi Scheme","$65B stolen"],["SBF/FTX \u2014 Crypto Fraud","$8B vanished"],["Propaganda: Ancient to Modern","Rome to TikTok"],["How Cults Brainwash People","BITE model, thought control"]];
 document.getElementById('SG').innerHTML=S.map(s=>`<div class="se rv"><div class="sn">${s[0]} <span class="cs">Coming soon</span></div><div class="sd">${s[1]}</div></div>`).join('');
